@@ -11,6 +11,8 @@ A Snowflake Intelligence agent for **cross-border money transfer fraud and the c
 
 **All data is synthetic. Every fraud score, risk tier and probability comes from a model prediction trained on synthetic data, and the agent says so whenever it quotes one.**
 
+Build time, Snowflake credits and AI tokens: see the [build report](docs/BUILD_REPORT.md).
+
 ![Architecture](docs/images/architecture.svg)
 
 ## What was built

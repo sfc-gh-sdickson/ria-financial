@@ -45,7 +45,7 @@ All data is synthetic and the generator creates both the features and the labels
 
 ## Not done
 
-- No git commit. The folder is not a git repository.
+- Nothing committed during the build. Committed and pushed afterwards to https://github.com/sfc-gh-sdickson/ria-financial (private). Build time and cost: [docs/BUILD_REPORT.md](docs/BUILD_REPORT.md).
 - No Streamlit dashboard, as agreed.
 - No database grants beyond `USAGE` on the agent for `PUBLIC`. The agent runs tools with the caller's role, so other roles need `USAGE` and `SELECT` on `RIA_FINANCIAL_INTELLIGENCE` before they can use it. The Cortex CLI role `SALES_RAVEN_RO_RL` cannot see the database for that reason.
 - Nothing was shared or published outside this account.

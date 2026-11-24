@@ -79,6 +79,7 @@ Agent-safe, masked views: `CUSTOMER_PROFILE`, `CUSTOMER_360`, `FRAUD_360`, `KYC_
 | `README.md`, `BUILD_LOG.md` | Overview and the dated build log |
 | `agent.md` | The agent description and routing table |
 | `agent (1).md` | The original build prompt (unchanged) |
+| `docs/BUILD_REPORT.md` | Build time, Snowflake credits and AI tokens |
 | `docs/AGENT_SETUP.md`, `docs/questions.md`, `docs/DEPLOYMENT_SUMMARY.md` | Setup, questions and deployment results |
 | `docs/RAW_COLUMNS.md` | RAW column reference extracted after step 2 |
 | `docs/images/*.svg` | Five diagrams, built by `scripts/build_svgs.py` and checked by `scripts/check_svg.py` |

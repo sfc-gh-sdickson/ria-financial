@@ -79,6 +79,6 @@ Model metrics come from synthetic data in which the generator creates both the f
 
 ## Not done
 
-- No git commit. The folder is not a git repository.
+- Committed and pushed to https://github.com/sfc-gh-sdickson/ria-financial (private) after this build.
 - No Streamlit dashboard (not requested).
 - No database grants beyond `USAGE` on the agent for `PUBLIC`. Other roles need grants before they can run the tools.
