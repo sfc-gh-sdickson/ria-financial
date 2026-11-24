@@ -1,0 +1,51 @@
+<table width="100%"><tr>
+<td align="left"><img src="ria_logo_no_person.svg" alt="Ria" height="72"></td>
+<td align="right"><img src="Snowflake_Logo.svg" alt="Snowflake" height="56"></td>
+</tr></table>
+
+# Ria Financial: build log
+
+Account `AWS161`. Database `RIA_FINANCIAL_INTELLIGENCE`. Warehouse `RIA_FINANCIAL_WH`. Agent `SNOWFLAKE_INTELLIGENCE.AGENTS.RIA_FINANCIAL_AGENT`.
+
+Built from `agent (1).md` using the Rocket Lab project as the template. Choices made up front: full build with review afterwards, no Streamlit dashboard, about one million transfers.
+
+| Date | Step | Result |
+|---|---|---|
+| 2026-11-23 | Database, schemas, warehouse | `RIA_FINANCIAL_INTELLIGENCE` with RAW, ANALYTICS and ML. `RIA_FINANCIAL_WH` MEDIUM, auto-suspend 300s |
+| 2026-11-23 | RAW tables | 27 tables with column comments. Label columns are outcomes only (`IS_FRAUD`, `CONFIRMED_MULE`, `IS_TRUE_MATCH` and so on). `docs/RAW_COLUMNS.md` extracted |
+| 2026-11-23 | Synthetic data | Each customer gets a hidden profile (normal, synthetic ID, account takeover, card, ring, structuring, scam) that drives transfers, sessions, devices, funding sources, alerts, cases, losses and screening. Final run: 40,000 customers, 1,219,785 transfers, 916,542 sessions, 20,602 alerts, 4,499 cases, 2,699,095 rows in all. Runs in about two minutes in one session |
+| 2026-11-23 | Generator bugs | `MOD(n * 3, 3)` is always 0, so every account-takeover victim got one session. Fixed to `MOD(n, 3)`. Collusive agents were all in one city because the pick used `MOD(i * 7919, 20)`. Now `MOD(ABS(HASH(i, 'collusion')), 20)` gives 42 agents in 20 cities and 4 countries. Fraud rings were all 8 to 9 accounts. A skewed ring id now gives sizes 3 to 23. Phone numbers repeated across thousands of customers. Now 39,274 distinct for 40,000 customers (household partners share one on purpose) |
+| 2026-11-23 | Model leakage investigation | First training run gave ROC AUC of 1.000 on five models. The notebook now prints each model's strongest single feature. Findings: attacker devices were the only shared devices, new-account volume was the only thing separating synthetic IDs, structurers all used the same agents, and mule beneficiaries were the only payees with many senders. No label column was ever an input. The generator was changed three times to add legitimate lookalikes (sleeper synthetic IDs, shared kiosk devices, stealthy account takeovers, honest agents with near-threshold sends, mid-size family payees, recurring payments just under $3,000) and label noise (7% of fraud unconfirmed, 25% of mules unconfirmed, 28% of scam victims unconfirmed, 10% of structuring reviews negative, 30% of true sanctions matches look weak) |
+| 2026-11-23 | Views | 26 ANALYTICS views: 15 masked agent-safe views including `CUSTOMER_360` and `FRAUD_360`, and 11 ML feature views. 10 score tables created with `IF NOT EXISTS`. `ML.MODEL_REGISTRY` table. No names, SSNs, full accounts or IP addresses exposed |
+| 2026-11-23 | Semantic views | 10 `RIA_*_SV`. First deploy failed: ratio metrics that wrapped `SUM(column)` with the same name as a metric are rejected. Rewritten to reference other metrics (`100 * DIV0(fl.net_loss_usd, fl.volume_usd)`). Four sample questions checked against their views through the Analyst REST API, each returned rows |
+| 2026-11-23 | Cortex Search | 6 `RIA_*_SEARCH` services (typologies and advisories 34 docs, case notes, SAR narratives, policies 18 docs, complaints, NPS comments). Each answers a test query with relevant results |
+| 2026-11-23 | ML | 10 models trained with 5-fold CV grouped by customer, negatives downsampled or class-weighted and probabilities corrected back to the true base rate. All 10 logged to the Model Registry at V1. Out-of-fold ROC AUC and PR AUC: fraud 0.961 / 0.758, takeover 0.996 / 0.796, synthetic ID 0.993 / 0.816, mule 0.997 / 0.751, structuring 0.990 / 0.889, collusion 0.980 / 0.833, chargeback 0.774 / 0.160, scam 0.986 / 0.308, ring 0.979 (unsupervised, validated on investigator-opened ring cases), screening triage 0.908 / 0.520 |
+| 2026-11-23 | Registry check | The first check compared rows in the order sent. Snowflake returns them in a different order, so model 10 failed with a mean difference of 0.12. Fixed by sorting on an explicit `ROW_ID`. All 10 models now match their local predictions |
+| 2026-11-23 | Tier precision | High tier is the lowest out-of-fold score with 50% precision, Medium 20%. Measured on the final scored rows, the High tier has 48% to 57% precision for fraud (56.9%), takeover (47.9%), mule (50.0%), scam (56.8%) and structuring (50.0%). The Low tier is 0.1% or less |
+| 2026-11-23 | Agent functions | 13 SQL functions. Parameter names match the agent tool `input_schema` names. Empty results return counts of zero and an empty array |
+| 2026-11-23 | Agent | `RIA_FINANCIAL_AGENT` with 30 tools (10 Analyst, 6 Search, 13 functions, chart), 16 sample questions, display name Ria Financial Assistant, blue. Spec generated by `scripts/build_agent_sql.py` so the JSON is valid. `GRANT USAGE` to `PUBLIC` on the agent only |
+| 2026-11-23 | Agent test | `scripts/test_agent.py` 16/16 on the final data. Each of the 10 model questions used its own tool and returned populated scores |
+| 2026-11-23 | Rerun path | Step 3 was rerun several times while tuning the data. The last run used `deploy.py --steps 3 4`, which detected the stale scores and reran the notebook on its own (590 seconds) |
+| 2026-11-23 | Docs and diagrams | README, `agent.md`, AGENT_SETUP, questions, ARTIFACTS_GUIDE, DEPLOYMENT_SUMMARY, RAW_COLUMNS and this log, each with the Ria logo on the left and the Snowflake logo on the right at the top. Five SVGs (architecture, agent tool decision, Customer 360, deployment flow, ML models) pass `scripts/check_svg.py` and were checked visually. The SVG header carries both logos |
+
+## Verified outcomes
+
+- Confirmed fraud: 0.69% of transfers (8,390 of 1,219,785). Send volume $576.8M from 2025-06-01 to 2026-11-22.
+- FATF Travel Rule: 7,247 transfers of $3,000 or more, none missing originator or beneficiary data.
+- Open alerts 2,591, of which 859 are open more than 30 days.
+- SAR filings: 19 unfiled and due within 10 days, 3 overdue.
+- Sanctions screening false-positive rate: 95.6% of closed hits.
+- Customers in the High composite model risk tier: 3,226. Fraud-ring clusters of 3 or more accounts: 39.
+- Models past their validation date: 4 of 10 (synthetic identity, structuring, collusion, screening triage).
+- Agent test: 16 of 16 pass.
+
+## Caveat
+
+All data is synthetic and the generator creates both the features and the labels, so every metric is optimistic. Five models (#2, #3, #4, #5, #8) still score above 0.985 ROC AUC. Each was investigated: no input column is derived from the label, and the strongest single feature on its own is far lower (the notebook prints it, and `ML.MODEL_REGISTRY.METRIC_NOTE` records it). The high scores come from several independent synthetic signals stacking. Do not quote any of these numbers as production performance. Validation dates in the registry are illustrative.
+
+## Not done
+
+- No git commit. The folder is not a git repository.
+- No Streamlit dashboard, as agreed.
+- No database grants beyond `USAGE` on the agent for `PUBLIC`. The agent runs tools with the caller's role, so other roles need `USAGE` and `SELECT` on `RIA_FINANCIAL_INTELLIGENCE` before they can use it. The Cortex CLI role `SALES_RAVEN_RO_RL` cannot see the database for that reason.
+- Nothing was shared or published outside this account.

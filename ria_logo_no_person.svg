@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 768" width="768" height="768">
+  <!-- Background -->
+  <rect width="768" height="768" fill="#CDE2E1"/>
+  <!-- Ground shadow -->
+  <ellipse cx="384" cy="498" rx="318" ry="25" fill="#C2D5D6"/>
+
+  <g fill="#F86300">
+    <!-- r -->
+    <path d="M165 502 V440 A114 114 0 0 1 279 326 V382 A58 58 0 0 0 221 440 V502 Z"/>
+    <!-- i -->
+    <!-- Dot of the i: every 15s jets off right with exhaust, wraps, flies back in from the left -->
+    <g>
+      <animateTransform attributeName="transform" type="translate"
+        dur="15s" repeatCount="indefinite" calcMode="spline"
+        values="0 0; 520 0; -480 0; 0 0; 0 0"
+        keyTimes="0; 0.03; 0.03; 0.075; 1"
+        keySplines="0.7 0 1 1; 0 0 1 1; 0 0 0.2 1; 0 0 1 1"/>
+      <!-- Jet exhaust (only visible while flying) -->
+      <g opacity="0">
+        <animate attributeName="opacity" dur="15s" repeatCount="indefinite"
+          values="0; 1; 1; 0; 0" keyTimes="0; 0.004; 0.065; 0.08; 1"/>
+        <path d="M312 241 Q250 248 170 261 Q250 274 312 281 Z" fill="#FF3D00" opacity="0.55">
+          <animate attributeName="d" dur="0.12s" repeatCount="indefinite"
+            values="M312 241 Q250 248 170 261 Q250 274 312 281 Z;
+                    M312 244 Q250 250 140 261 Q250 272 312 278 Z;
+                    M312 241 Q250 248 170 261 Q250 274 312 281 Z"/>
+        </path>
+        <path d="M314 246 Q262 252 205 261 Q262 270 314 276 Z" fill="#FFA000">
+          <animate attributeName="d" dur="0.1s" repeatCount="indefinite"
+            values="M314 246 Q262 252 205 261 Q262 270 314 276 Z;
+                    M314 248 Q262 254 185 261 Q262 268 314 274 Z;
+                    M314 246 Q262 252 205 261 Q262 270 314 276 Z"/>
+        </path>
+        <path d="M316 252 Q280 256 245 261 Q280 266 316 270 Z" fill="#FFE97A">
+          <animate attributeName="d" dur="0.08s" repeatCount="indefinite"
+            values="M316 252 Q280 256 245 261 Q280 266 316 270 Z;
+                    M316 254 Q280 257 230 261 Q280 265 316 268 Z;
+                    M316 252 Q280 256 245 261 Q280 266 316 270 Z"/>
+        </path>
+        <!-- Speed lines -->
+        <g stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.8">
+          <line x1="300" y1="228" x2="230" y2="228"/>
+          <line x1="300" y1="294" x2="215" y2="294"/>
+        </g>
+      </g>
+      <circle cx="347" cy="261" r="38"/>
+    </g>
+    <rect x="319" y="326" width="56" height="176"/>
+    <!-- a -->
+    <path fill-rule="evenodd" d="M587 414 V502 H531 V476 L492 504 A90 90 0 1 1 587 414 Z
+             M497 380 A34 34 0 1 0 497 448 A34 34 0 1 0 497 380 Z"/>
+  </g>
+
+</svg>

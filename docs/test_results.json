@@ -1,0 +1,155 @@
+{
+  "passed": 16,
+  "total": 16,
+  "run_at": "2026-11-23T18:27:44",
+  "questions": [
+    {
+      "n": 1,
+      "question": "Which transfers in the last 7 days have the highest fraud probability?",
+      "passed": true,
+      "tools": [
+        "GetTransactionFraudScore"
+      ],
+      "seconds": 21
+    },
+    {
+      "n": 2,
+      "question": "Which customer accounts show the highest account-takeover risk this week?",
+      "passed": true,
+      "tools": [
+        "GetAccountTakeoverRisk"
+      ],
+      "seconds": 19
+    },
+    {
+      "n": 3,
+      "question": "How many new sign-ups this month are likely synthetic identities?",
+      "passed": true,
+      "tools": [
+        "GetSyntheticIdentityRisk"
+      ],
+      "seconds": 17
+    },
+    {
+      "n": 4,
+      "question": "Which beneficiaries are most likely to be money mules, and how much have they received?",
+      "passed": true,
+      "tools": [
+        "GetMuleBeneficiaries"
+      ],
+      "seconds": 19
+    },
+    {
+      "n": 5,
+      "question": "Which senders look like they are structuring transfers just under $10,000?",
+      "passed": true,
+      "tools": [
+        "GetStructuringAlerts"
+      ],
+      "seconds": 16
+    },
+    {
+      "n": 6,
+      "question": "Which agent locations have the highest collusion risk score?",
+      "passed": true,
+      "tools": [
+        "GetAgentCollusionRisk"
+      ],
+      "seconds": 22
+    },
+    {
+      "n": 7,
+      "question": "What is the predicted chargeback exposure on card-funded transfers this month?",
+      "passed": true,
+      "tools": [
+        "GetChargebackRisk"
+      ],
+      "seconds": 20
+    },
+    {
+      "n": 8,
+      "question": "Which recent transfers look like the sender is a scam victim?",
+      "passed": true,
+      "tools": [
+        "GetScamVictimAlerts"
+      ],
+      "seconds": 22
+    },
+    {
+      "n": 9,
+      "question": "What are the largest suspected fraud rings and how many accounts does each link?",
+      "passed": true,
+      "tools": [
+        "GetFraudRings"
+      ],
+      "seconds": 16
+    },
+    {
+      "n": 10,
+      "question": "Which open sanctions screening hits are most likely true matches and should be worked first?",
+      "passed": true,
+      "tools": [
+        "GetScreeningTriage"
+      ],
+      "seconds": 24
+    },
+    {
+      "n": 11,
+      "question": "What is our fraud loss rate by corridor this quarter?",
+      "passed": true,
+      "tools": [
+        "FraudLossAnalytics",
+        "system_execute_sql"
+      ],
+      "seconds": 25
+    },
+    {
+      "n": 12,
+      "question": "How many alerts are open past 30 days, and which queue owns them?",
+      "passed": true,
+      "tools": [
+        "CaseAnalytics",
+        "system_execute_sql"
+      ],
+      "seconds": 16
+    },
+    {
+      "n": 13,
+      "question": "Are any SAR filings at risk of missing the 30-day deadline?",
+      "passed": true,
+      "tools": [
+        "ComplianceAnalytics",
+        "system_execute_sql"
+      ],
+      "seconds": 20
+    },
+    {
+      "n": 14,
+      "question": "Give me a Customer 360 brief for customer C000123.",
+      "passed": true,
+      "tools": [
+        "GetCustomer360"
+      ],
+      "seconds": 20
+    },
+    {
+      "n": 15,
+      "question": "What is the sanctions screening false-positive rate by list source?",
+      "passed": true,
+      "tools": [
+        "ScreeningAnalytics",
+        "system_execute_sql"
+      ],
+      "seconds": 14
+    },
+    {
+      "n": 16,
+      "question": "Which models in the registry are past their validation date?",
+      "passed": true,
+      "tools": [
+        "GetModelRegistry"
+      ],
+      "seconds": 13
+    }
+  ]
+}

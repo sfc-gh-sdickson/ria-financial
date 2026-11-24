@@ -1,0 +1,10 @@
+name: ria_financial_env
+channels:
+  - snowflake
+dependencies:
+  - python=3.11
+  - snowflake-ml-python
+  - scikit-learn
+  - xgboost
+  - pandas
+  - matplotlib

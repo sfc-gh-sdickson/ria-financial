@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 768" width="768" height="768">
+  <!-- Background -->
+  <rect width="768" height="768" fill="#CDE2E1"/>
+  <!-- Ground shadow -->
+  <ellipse cx="384" cy="498" rx="318" ry="25" fill="#C2D5D6"/>
+
+  <g fill="#F86300">
+    <!-- r -->
+    <path d="M165 502 V440 A114 114 0 0 1 279 326 V382 A58 58 0 0 0 221 440 V502 Z"/>
+    <!-- i -->
+    <!-- Dot of the i: every 15s jets off right with exhaust, wraps, flies back in from the left -->
+    <g>
+      <animateTransform attributeName="transform" type="translate"
+        dur="15s" repeatCount="indefinite" calcMode="spline"
+        values="0 0; 520 0; -480 0; 0 0; 0 0"
+        keyTimes="0; 0.03; 0.03; 0.075; 1"
+        keySplines="0.7 0 1 1; 0 0 1 1; 0 0 0.2 1; 0 0 1 1"/>
+      <!-- Jet exhaust (only visible while flying) -->
+      <g opacity="0">
+        <animate attributeName="opacity" dur="15s" repeatCount="indefinite"
+          values="0; 1; 1; 0; 0" keyTimes="0; 0.004; 0.065; 0.08; 1"/>
+        <path d="M312 241 Q250 248 170 261 Q250 274 312 281 Z" fill="#FF3D00" opacity="0.55">
+          <animate attributeName="d" dur="0.12s" repeatCount="indefinite"
+            values="M312 241 Q250 248 170 261 Q250 274 312 281 Z;
+                    M312 244 Q250 250 140 261 Q250 272 312 278 Z;
+                    M312 241 Q250 248 170 261 Q250 274 312 281 Z"/>
+        </path>
+        <path d="M314 246 Q262 252 205 261 Q262 270 314 276 Z" fill="#FFA000">
+          <animate attributeName="d" dur="0.1s" repeatCount="indefinite"
+            values="M314 246 Q262 252 205 261 Q262 270 314 276 Z;
+                    M314 248 Q262 254 185 261 Q262 268 314 274 Z;
+                    M314 246 Q262 252 205 261 Q262 270 314 276 Z"/>
+        </path>
+        <path d="M316 252 Q280 256 245 261 Q280 266 316 270 Z" fill="#FFE97A">
+          <animate attributeName="d" dur="0.08s" repeatCount="indefinite"
+            values="M316 252 Q280 256 245 261 Q280 266 316 270 Z;
+                    M316 254 Q280 257 230 261 Q280 265 316 268 Z;
+                    M316 252 Q280 256 245 261 Q280 266 316 270 Z"/>
+        </path>
+        <!-- Speed lines -->
+        <g stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.8">
+          <line x1="300" y1="228" x2="230" y2="228"/>
+          <line x1="300" y1="294" x2="215" y2="294"/>
+        </g>
+      </g>
+      <circle cx="347" cy="261" r="38"/>
+    </g>
+    <rect x="319" y="326" width="56" height="176"/>
+    <!-- a -->
+    <path fill-rule="evenodd" d="M587 414 V502 H531 V476 L492 504 A90 90 0 1 1 587 414 Z
+             M497 380 A34 34 0 1 0 497 448 A34 34 0 1 0 497 380 Z"/>
+  </g>
+
+  <!-- Woman leaning on the "a" (cheers as the jet ball zooms past) -->
+  <g stroke="#1A1D3A" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round">
+    <!-- Happy reaction: a little hop as the ball zooms by, then a cheerful lean after it (pivot at feet) -->
+    <animateTransform attributeName="transform" type="translate" dur="15s" repeatCount="indefinite"
+      calcMode="spline"
+      values="0 0; 0 0; 0 -14; 0 0; 0 -6; 0 0; 0 0"
+      keyTimes="0; 0.016; 0.026; 0.036; 0.043; 0.05; 1"
+      keySplines="0 0 1 1; 0.2 0.8 0.4 1; 0.6 0 0.8 0.4; 0.2 0.8 0.4 1; 0.6 0 0.8 0.4; 0 0 1 1"/>
+    <animateTransform attributeName="transform" type="rotate" additive="sum" dur="15s" repeatCount="indefinite"
+      calcMode="spline"
+      values="0 615 498; 0 615 498; 6 615 498; 6 615 498; 0 615 498; 0 615 498"
+      keyTimes="0; 0.02; 0.03; 0.085; 0.1; 1"
+      keySplines="0 0 1 1; 0.3 0 0.3 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1"/>
+    <!-- Legs / trousers -->
+    <path d="M598 392 C596 420 598 450 602 482 L612 484 C614 460 618 440 622 420 C628 450 628 470 624 492 L634 494 C640 466 642 430 636 394 Z" fill="#1A1D3A"/>
+    <!-- Shoes -->
+    <path d="M600 480 L596 494 L604 498 L612 486 Z" fill="#1A1D3A"/>
+    <path d="M622 490 L620 500 L632 504 L636 494 Z" fill="#1A1D3A"/>
+    <!-- Shirt -->
+    <path d="M592 350 C584 360 582 382 586 396 L636 396 C640 380 638 360 628 348 L612 342 Z" fill="#FFFFFF"/>
+    <!-- Folded arms -->
+    <path d="M594 374 C604 382 620 384 634 376" fill="none"/>
+    <path d="M598 370 L604 378" fill="none"/>
+    <!-- Neck -->
+    <path d="M608 336 L608 344 L616 344 L616 336 Z" fill="#F2C9B0" stroke="none"/>
+    <!-- Head -->
+    <ellipse cx="609" cy="326" rx="11" ry="13" fill="#F2C9B0" stroke="none"/>
+    <!-- Eye: relaxed dot that widens with delight, then a happy squint -->
+    <ellipse cx="614" cy="324" rx="1.4" ry="1.6" fill="#1A1D3A" stroke="none">
+      <animate attributeName="ry" dur="15s" repeatCount="indefinite"
+        values="1.6; 1.6; 2.8; 2.8; 0.6; 0.6; 1.6; 1.6"
+        keyTimes="0; 0.016; 0.022; 0.04; 0.046; 0.09; 0.1; 1"/>
+    </ellipse>
+    <!-- Smile: subtle by default, grows into a big grin as the ball passes -->
+    <path d="M611 331 Q614 333 617 331" fill="none" stroke="#1A1D3A" stroke-width="1.2">
+      <animate attributeName="d" dur="15s" repeatCount="indefinite"
+        values="M611 331 Q614 333 617 331; M611 331 Q614 333 617 331; M609 330 Q614 337 618 329; M609 330 Q614 337 618 329; M611 331 Q614 333 617 331; M611 331 Q614 333 617 331"
+        keyTimes="0; 0.018; 0.026; 0.09; 0.1; 1"/>
+    </path>
+    <!-- Blush while grinning -->
+    <ellipse cx="611" cy="329" rx="2.5" ry="1.5" fill="#F59A8A" stroke="none" opacity="0">
+      <animate attributeName="opacity" dur="15s" repeatCount="indefinite"
+        values="0; 0; 0.8; 0.8; 0; 0" keyTimes="0; 0.02; 0.03; 0.085; 0.1; 1"/>
+    </ellipse>
+    <!-- Hair -->
+    <path d="M598 324 C596 312 606 306 614 310 C620 314 618 322 612 322 C606 324 604 330 602 336 C598 334 598 328 598 324 Z" fill="#1A1D3A"/>
+    <circle cx="590" cy="312" r="8" fill="#1A1D3A">
+      <animateTransform attributeName="transform" type="translate" dur="15s" repeatCount="indefinite"
+        values="0 0; 0 0; -4 -6; 1 2; -1 -1; 0 0; 0 0" keyTimes="0; 0.018; 0.026; 0.034; 0.042; 0.05; 1"/>
+    </circle>
+  </g>
+</svg>
