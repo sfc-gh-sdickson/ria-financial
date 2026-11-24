@@ -7,7 +7,7 @@
 
 Account `AWS161` | Database `RIA_FINANCIAL_INTELLIGENCE` | Warehouse `RIA_FINANCIAL_WH` | Built 2026-11-23
 
-![Deployment flow](images/deployment_flow.svg)
+![Deployment flow](images/deployment_flow.svg?v=2)
 
 ## Deployed
 

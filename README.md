@@ -13,7 +13,7 @@ A Snowflake Intelligence agent for **cross-border money transfer fraud and the c
 
 Build time, Snowflake credits and AI tokens: see the [build report](docs/BUILD_REPORT.md).
 
-![Architecture](docs/images/architecture.svg)
+![Architecture](docs/images/architecture.svg?v=2)
 
 ## What was built
 
@@ -29,7 +29,7 @@ Build time, Snowflake credits and AI tokens: see the [build report](docs/BUILD_R
 
 Confirmed fraud is 0.69% of transfers (8,390 of 1,219,785); send volume is $576.8M.
 
-![Agent tool decision](docs/images/agent_tool_decision.svg)
+![Agent tool decision](docs/images/agent_tool_decision.svg?v=2)
 
 ## The 10 fraud models
 
@@ -48,7 +48,7 @@ Confirmed fraud is 0.69% of transfers (8,390 of 1,219,785); send volume is $576.
 
 Model metrics come from synthetic data in which the generator creates both the features and the labels. They are not production performance. 5 models (#2, #3, #4, #5, #8) score above 0.985 ROC AUC. Each was checked for label leakage: no input column is derived from the label, and the best single feature on its own is far below the model score, so the high values reflect several independent synthetic signals stacking, not a leak. The notebook prints that evidence and `ML.MODEL_REGISTRY.METRIC_NOTE` records it. Several rounds of generator changes added label noise, decoys and overlap to bring the metrics down.
 
-![ML models](docs/images/ml_models.svg)
+![ML models](docs/images/ml_models.svg?v=2)
 
 ## Standards reflected in the build
 
