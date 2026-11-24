@@ -1,7 +1,8 @@
-<table width="100%"><tr>
-<td align="left"><img src="ria_logo_no_person.svg" alt="Ria" height="72"></td>
-<td align="right"><img src="Snowflake_Logo.svg" alt="Snowflake" height="56"></td>
-</tr></table>
+<p>
+<img align="left" src="ria_logo_no_person.svg" alt="Ria" height="72">
+<img align="right" src="Snowflake_Logo.svg" alt="Snowflake" height="56">
+</p>
+<br clear="both"><br>
 
 # Ria Financial Intelligence Agent
 
